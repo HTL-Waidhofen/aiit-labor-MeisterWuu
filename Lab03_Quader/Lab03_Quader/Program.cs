@@ -49,24 +49,41 @@ namespace Lab03_Quader
             text = text.Replace(" ", "");           //Leerzeichen entfernen --> "2cm; 3cm;5mm" -> "2cm;3cm;5mm"
             string[] parts = text.Split(';');       //Teilen bei Semikolon --> ["2cm", "3cm", "5mm"]
 
-            if (parts[0].EndsWith("cm"))            //hoehe
-            {
-                string hoeheStr = parts[0].Replace("cm", "");   // "2cm" -> "2"
-                hoehe =  Double.Parse(hoeheStr) * 10;
-            }
-            else if (parts[0].EndsWith("mm"))
-            {
-                string hoeheStr = parts[0].Replace("mm", "");   // "20mm" -> "20"
-                hoehe = Double.Parse(hoeheStr);
-            }
-
-            ParseValue(parts[0]);                   //Aufruf der Klassenmethode ParseValue
+            hoehe = ParseValue(parts[0]);                   //Aufruf der Klassenmethode ParseValue
+            breite = ParseValue(parts[1]);
+            laenge = ParseValue(parts[2]);
             return new Quader(hoehe, breite, laenge);
         }
 
         public double GetVolume()
         {
-            return hoehe * breite * laenge;
+            double volume = hoehe * breite * laenge;
+            return volume;
+        }
+
+        public void DrawFootprint()
+        {
+            for(int i = 0; i < laenge; i++)
+            {
+                Console.Write("*");
+            }
+
+            for (int i = 0; i < breite - 2; i++)
+            {
+                Console.WriteLine();
+                Console.Write("*");
+                for (int j = 0; j < laenge - 2; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write("*");
+            }
+            Console.WriteLine();
+            for (int a = 0; a < laenge; a++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
         }
     }
 
@@ -75,19 +92,39 @@ namespace Lab03_Quader
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Beispiel: 2cm; 3cm; 5mm");
             Console.Write("Bitte geben sie den Quader ein: ");
             string eingabe = Console.ReadLine();
             
             Quader q = Quader.Parse(eingabe);       //Klassenmethode
-
-            Console.WriteLine($"Der Quader hat das Volumen: {q.GetVolume()}mm³");
-
             //Quader q1 = new Quader();
             //Console.WriteLine(q1.GetHeight());    //Instanzmethode
 
             //string intStr = "12";
             // int x = int.Parse(intStr);
+
+            q.DrawFootprint();
+
+            Console.WriteLine($"Der Quader hat das Volumen: {q.GetVolume()}mm³");
+            
+
+            Random random = new Random();
+            List <Quader> quaderListe = new List<Quader>();
+
+            for(int i = 0; i < 10; i++)
+            {
+                double h = random.Next(10, 21); //10mm bis 20mm
+                double b = random.Next(10, 21);
+                double l = random.Next(10, 21);
+                Quader quader = new Quader(h, b, l);
+                quaderListe.Add(quader);
+
+                quaderListe[i].DrawFootprint();
+            }
+
+            
+
 
             Console.ReadKey();
         }
