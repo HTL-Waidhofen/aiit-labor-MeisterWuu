@@ -12,21 +12,15 @@ namespace Lab04_Bruchrechnung
         {
             Console.WriteLine("Bruchrechnung in C#");
 
-            //Eingabe: 67 / 69
-            Console.WriteLine("Bitte 1. Bruch eingeben (Zähler / Nenner): ");
-            string eingabe1 = Console.ReadLine();
-            Console.WriteLine("Bitte 2. Bruch eingeben (Zähler / Nenner): ");
-            string eingabe2 = Console.ReadLine();
+            //Eingabe: 67 / 69 + 23 / 45
 
-            Bruch b1 = Bruch.Parse(eingabe1);
-            Bruch b2 = Bruch.Parse(eingabe2);
+            Console.Write("Bitte geben sie eine Bruchrechnung ein (z.B. 67/69 + 23/45): ");
+            string eingabe = Console.ReadLine();
 
-            b1.Add(b2);
+            Bruchrechnung br =Bruchrechnung.Parse(eingabe);
 
-            Console.WriteLine(b1);
 
-            ;
-
+            Console.WriteLine(br.getResult);
             Console.ReadKey();
         }
     }
