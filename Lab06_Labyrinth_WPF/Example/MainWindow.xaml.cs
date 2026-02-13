@@ -21,6 +21,8 @@ namespace Example
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Figur figur = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,6 +46,11 @@ namespace Example
                         Canvas.SetTop(c, a * 20);
                         Canvas.SetLeft(c, i * 20);
                         Spielfeld.Children.Add(c);
+                    }
+                    else if (zeilen[a][i] == 'X')
+                    {
+                        figur = new Figur(i * 20, a * 20);
+                        Spielfeld.Children.Add(figur.GetEllipse());
                     }
                 }
             }
