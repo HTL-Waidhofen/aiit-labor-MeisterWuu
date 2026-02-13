@@ -33,6 +33,8 @@ namespace Example
         {
             x += dx;
             y += dy;
+            Canvas.SetLeft(geometrie, x);
+            Canvas.SetTop(geometrie, y);
         }
 
         public Ellipse GetEllipse()

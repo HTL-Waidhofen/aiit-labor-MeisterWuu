@@ -55,5 +55,13 @@ namespace Example
                 }
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Right)
+            {
+                figur.Bewegen(1, 0);
+            }
+        }
     }
 }
