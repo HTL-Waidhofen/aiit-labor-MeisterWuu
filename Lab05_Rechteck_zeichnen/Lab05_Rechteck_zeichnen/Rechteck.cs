@@ -92,5 +92,5 @@ namespace Lab05_Rechteck_zeichnen
             }
         }
     }
-}
+} 
 
