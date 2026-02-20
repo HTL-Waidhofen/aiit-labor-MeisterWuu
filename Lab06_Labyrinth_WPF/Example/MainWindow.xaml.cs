@@ -58,9 +58,24 @@ namespace Example
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Right)
+            if (e.Key == Key.Right || e.Key == Key.D)
             {
                 figur.Bewegen(1, 0);
+            }
+
+            if (e.Key == Key.Up || e.Key == Key.W)
+            {
+                figur.Bewegen(0, -1);
+            }
+
+            if (e.Key == Key.Left || e.Key == Key.A)
+            {
+                figur.Bewegen(-1, 0);
+            }
+
+            if (e.Key == Key.Down || e.Key == Key.S)
+            {
+                figur.Bewegen(0, 1);
             }
         }
     }
