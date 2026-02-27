@@ -27,11 +27,11 @@ namespace Example
         {
             InitializeComponent();
 
-            StreamReader reader = new StreamReader("maze_6x6.txt");
+            StreamReader reader = new StreamReader("maze_10x10.txt");
             string inhalt = reader.ReadToEnd();
             string[] zeilen = inhalt.Split('\n');
 
-            this.Spielfeld.Background = Brushes.Aquamarine;
+            this.Spielfeld.Background = Brushes.Black;
 
             for (int a = 0; a < zeilen.Length; a++)
             {
@@ -40,7 +40,8 @@ namespace Example
                     if (zeilen[a][i] == '#')
                     {
                         Canvas c = new Canvas();
-                        c.Background = Brushes.Red;
+                        c.Background = Brushes.DarkOliveGreen;
+                        c.Tag = "wall";
                         c.Width = 20;
                         c.Height = 20;
                         Canvas.SetTop(c, a * 20);
@@ -58,24 +59,28 @@ namespace Example
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Right || e.Key == Key.D)
-            {
-                figur.Bewegen(1, 0);
-            }
+            int dx = 0;
+            int dy = 0;
+            if (e.Key == Key.Right || e.Key == Key.D) dx = 1;
+            if (e.Key == Key.Up || e.Key == Key.W) dy = -1;
+            if (e.Key == Key.Left || e.Key == Key.A) dx = -1;
+            if (e.Key == Key.Down || e.Key == Key.S) dy = 1;
 
-            if (e.Key == Key.Up || e.Key == Key.W)
+            if (dx != 0 || dy != 0)
             {
-                figur.Bewegen(0, -1);
-            }
+                int step = 20; // move by one grid cell (20 pixels)
+                int targetX = figur.X + dx * step;
+                int targetY = figur.Y + dy * step;
 
-            if (e.Key == Key.Left || e.Key == Key.A)
-            {
-                figur.Bewegen(-1, 0);
-            }
+                bool blocked = Spielfeld.Children.OfType<Canvas>()
+                    .Any(c => (c.Tag as string) == "wall" &&
+                              Canvas.GetLeft(c) == targetX &&
+                              Canvas.GetTop(c) == targetY);
 
-            if (e.Key == Key.Down || e.Key == Key.S)
-            {
-                figur.Bewegen(0, 1);
+                if (!blocked)
+                {
+                    figur.Bewegen(dx * step, dy * step);
+                }
             }
         }
     }

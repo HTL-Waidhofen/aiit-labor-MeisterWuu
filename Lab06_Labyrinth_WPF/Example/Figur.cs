@@ -41,5 +41,9 @@ namespace Example
         {
             return geometrie;
         }
+
+        // Expose current position so caller can check collisions
+        public int X { get { return x; } }
+        public int Y { get { return y; } }
     }
 }
