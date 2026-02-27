@@ -8,18 +8,11 @@
         Title="MainWindow" Height="450" Width="800"
         KeyDown="Window_KeyDown">
     <StackPanel Orientation="Horizontal">
-        <Button Content="Click Me" Width="100" Height="30" HorizontalAlignment="Center" Margin="10"/>
-        <Button Content="Click Me" Width="100" Height="30" HorizontalAlignment="Center" Margin="10"/>
 
-        <StackPanel Orientation="Vertical">
-            <Button Content="Click Me" Width="100" Height="30" HorizontalAlignment="Center" Margin="10"/>
-            <Button Content="Click Me" Width="100" Height="30" HorizontalAlignment="Center" Margin="10"/>
-        </StackPanel>
+        <Canvas x:Name="Spielfeld" Background="Blue" Width="800" Height="500">
 
-        <Canvas x:Name="Spielfeld" Background="BlueViolet" Width="200" Height="400">
-            <Canvas Background="HotPink" Width="100" Height="100" Canvas.Left="50" Canvas.Top="50"/>
-            
+
         </Canvas>
- 
-    </StackPanel>
+
+        </StackPanel>
 </Window>
