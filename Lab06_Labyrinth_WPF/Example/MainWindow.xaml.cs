@@ -72,10 +72,26 @@ namespace Example
                 int targetX = figur.X + dx * step;
                 int targetY = figur.Y + dy * step;
 
+                /*
                 bool blocked = Spielfeld.Children.OfType<Canvas>()
                     .Any(c => (c.Tag as string) == "wall" &&
                               Canvas.GetLeft(c) == targetX &&
                               Canvas.GetTop(c) == targetY);
+                */
+
+                // Alternative implementierung
+                bool blocked = false;
+                foreach(UIElement element in Spielfeld.Children)
+                {
+                    if (element is Canvas)
+                    {
+                        Canvas c = (Canvas)element;
+                        if (Canvas.GetLeft(c) == targetX && Canvas.GetTop(c) == targetY)
+                        {
+                            blocked = true;
+                        }
+                    }
+                }
 
                 if (!blocked)
                 {
