@@ -42,6 +42,12 @@ namespace Example
             return geometrie;
         }
 
+        // indicate invulnerability visually (lower opacity)
+        public void SetInvulnerable(bool inv)
+        {
+            geometrie.Opacity = inv ? 0.4 : 1.0;
+        }
+
         // Expose current position so caller can check collisions
         public int X { get { return x; } }
         public int Y { get { return y; } }
